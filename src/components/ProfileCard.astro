@@ -1,0 +1,106 @@
+---
+import { siteConfig } from '../site.config';
+import { withBase } from '../lib/withBase';
+
+const discordProfileUrl = 'https://discord.com/users/576348645742608387';
+---
+
+<section class="profile-card terminal-panel" box-="square" shear-="top">
+  <img
+    class="avatar"
+    src={withBase('/kashii-avatar.webp')}
+    alt="kashii's Discord profile artwork"
+    width="749"
+    height="749"
+    loading="eager"
+    fetchpriority="high"
+  />
+  <div class="profile-copy">
+    <div class="name-row">
+      <h1>kashii</h1>
+      <div class="socials" aria-label="Social profiles">
+        <a href={siteConfig.soundCloudUrl} target="_blank" rel="noreferrer">SoundCloud ↗</a>
+        <a href={discordProfileUrl} target="_blank" rel="noreferrer">Discord ↗</a>
+      </div>
+    </div>
+    <p>I make high-energy electronic music with melodic ideas and detailed sound design.</p>
+    <p>I’m also available for custom instrumentals, production, arrangement and final polish.</p>
+  </div>
+</section>
+
+<style>
+  .profile-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: clamp(1.25rem, 4vw, 2.25rem);
+    align-items: center;
+    padding: clamp(1.65rem, 2.5vw, 2rem);
+  }
+
+  .avatar {
+    width: clamp(6rem, 18vw, 10rem);
+    aspect-ratio: 1;
+    object-fit: cover;
+    image-rendering: auto;
+  }
+
+  .profile-copy {
+    display: grid;
+    gap: 0.55rem;
+    line-height: 1.35;
+  }
+
+  .name-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.45rem;
+    align-items: center;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    letter-spacing: -0.045em;
+  }
+
+  p {
+    margin: 0;
+    color: var(--foreground1);
+  }
+
+  .socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1rem;
+    align-items: center;
+  }
+
+  .socials a {
+    color: var(--foreground1);
+    font-size: 0.84rem;
+  }
+
+  .socials a:hover {
+    color: var(--accent-soft);
+  }
+
+  @media (max-width: 620px) {
+    .profile-card {
+      grid-template-columns: 1fr;
+    }
+
+    .avatar {
+      justify-self: center;
+    }
+
+    .profile-card,
+    .name-row,
+    .socials {
+      justify-content: center;
+    }
+
+    .profile-copy {
+      text-align: center;
+    }
+  }
+</style>

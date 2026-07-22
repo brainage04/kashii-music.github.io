@@ -4,6 +4,7 @@ import TerminalPanel from '../../components/TerminalPanel.astro';
 import { services } from '../../data/services';
 import { soundCloudProfile } from '../../data/tracks';
 import SiteLayout from '../../layouts/SiteLayout.astro';
+const discordProfileUrl = 'https://discord.com/users/576348645742608387';
 ---
 
 <SiteLayout
@@ -12,27 +13,19 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
 >
   <div class="site-stack commissions-stack">
     <PageHeader
-      eyebrow="Commissions / Open"
-      title="Production commissions."
-      description="Choose a starting point and send me the details. I’ll confirm the scope and final quote before work begins. Introductory prices are listed in Australian dollars."
+      title="Commissions"
+      description="Pick what’s closest to what you need, then send me the details. These are starting prices in AUD, and I’ll confirm the final price before I start."
     />
 
     <section aria-labelledby="pricing-title">
       <div class="section-heading">
-        <div>
-          <p class="eyebrow">Starter pricing</p>
-          <h2 id="pricing-title">Choose a service</h2>
-        </div>
-        <p>All prices from · AUD</p>
+        <h2 id="pricing-title">Choose a service</h2>
+        <p>Starting prices · AUD</p>
       </div>
 
       <div class="pricing-grid">
         {services.map((service) => (
-          <article class:list={['price-card', { 'price-card--featured': service.featured }]} box-="square">
-            <div class="price-topline">
-              <span>{service.id.toUpperCase().replaceAll('-', '_')}</span>
-              {service.featured && <span class="site-badge" is-="badge">Most requested</span>}
-            </div>
+          <article class="price-card" box-="square">
             <h3>{service.name}</h3>
             <p class="price"><small>from</small> {service.price}</p>
             <p class="summary">{service.summary}</p>
@@ -51,10 +44,7 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
 
     <section aria-labelledby="workflow-title">
       <div class="section-heading">
-        <div>
-          <p class="eyebrow">How it works</p>
-          <h2 id="workflow-title">How commissions work</h2>
-        </div>
+        <h2 id="workflow-title">How commissions work</h2>
       </div>
       <ol class="flow-list">
         <li><strong>01 / Send</strong><p>Use the contact details below to send me a short project brief.</p></li>
@@ -67,7 +57,6 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
     <TerminalPanel title="Contact" id="contact" class="contact-panel" shear="none">
       <div class="contact-grid">
         <div class="contact-copy">
-          <p class="eyebrow">Contact</p>
           <h2>Send me the project details.</h2>
           <p>Discord is the best way to reach me. You can also use my SoundCloud profile.</p>
 
@@ -75,7 +64,7 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
             <div class="contact-row">
               <span>Discord</span>
               <strong>helpimdead111</strong>
-              <button type="button" data-copy-text="helpimdead111" data-copy-label="Discord username">Copy</button>
+              <a href={discordProfileUrl} target="_blank" rel="noreferrer">Profile URL ↗</a>
             </div>
             <div class="contact-row">
               <span>SoundCloud</span>
@@ -84,29 +73,41 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
             </div>
           </div>
 
-          <div class="panel-actions">
-            <a class="action-button action-button--ghost" href="https://discord.com/app" target="_blank" rel="noreferrer" is-="button">Open Discord ↗</a>
-          </div>
         </div>
 
         <div class="message-template">
           <div class="template-heading">
-            <div>
-              <p class="eyebrow">Message template</p>
-              <h3>Include the useful details</h3>
-            </div>
+            <h3>Include useful details</h3>
             <button type="button" id="copy-template">Copy template</button>
           </div>
-          <pre id="message-template">Hi, I’m [name].
+          <div class="template-columns">
+            <div>
+              <h4>Template</h4>
+              <pre id="message-template">Hi, I’m [your name].
 
-Service:
-Project:
-Reference links:
-Budget:
-Deadline:
-Intended use:
+Service: [e.g. custom instrumental]
+Project: [what you want made]
+Reference links: [two or three songs with a similar sound]
+Budget: [your budget in AUD]
+Deadline: [the date you need it by]
+Intended use: [e.g. Spotify release, YouTube video or personal use]
 
-Anything else I should know:</pre>
+Anything else I should know: [vocals, stems or other useful details]</pre>
+            </div>
+            <div>
+              <h4>Example</h4>
+              <pre>Hi, I’m Alex.
+
+Service: Custom instrumental
+Project: A fast electronic track for a vocal single
+Reference links: Two SoundCloud or Spotify track URLs
+Budget: A$180
+Deadline: 20 September 2026
+Intended use: Spotify and YouTube release
+
+Anything else I should know: I have the vocals recorded and would also like an instrumental version.</pre>
+            </div>
+          </div>
           <p id="contact-status" role="status" aria-live="polite"></p>
         </div>
       </div>
@@ -114,28 +115,25 @@ Anything else I should know:</pre>
 
     <section aria-labelledby="faq-title">
       <div class="section-heading">
-        <div>
-          <p class="eyebrow">Before you ask</p>
-          <h2 id="faq-title">Quick answers</h2>
-        </div>
+        <h2 id="faq-title">Quick answers</h2>
       </div>
       <div class="faq-grid">
-        <details open>
-          <summary>What should I send?</summary>
+        <article class="faq-card">
+          <h3>What should I send?</h3>
           <p>A short goal, two or three references, your budget, deadline and anything already recorded. Voice memos and rough demos are useful.</p>
-        </details>
-        <details>
-          <summary>Are the listed prices final?</summary>
+        </article>
+        <article class="faq-card">
+          <h3>Are the listed prices final?</h3>
           <p>They are starting prices in AUD. The final quote reflects scope, turnaround and intended usage, and is confirmed before work starts.</p>
-        </details>
-        <details>
-          <summary>Who owns the finished music?</summary>
+        </article>
+        <article class="faq-card">
+          <h3>Who owns the finished music?</h3>
           <p>Usage rights vary by service. The agreed licence, credits and permitted use will be written into the quote before production begins.</p>
-        </details>
-        <details>
-          <summary>How long will it take?</summary>
+        </article>
+        <article class="faq-card">
+          <h3>How long will it take?</h3>
           <p>Timing depends on the project and my current queue. Include your real deadline so I can confirm availability up front.</p>
-        </details>
+        </article>
       </div>
     </section>
   </div>
@@ -165,27 +163,8 @@ Anything else I should know:</pre>
     box-shadow: var(--panel-shadow);
   }
 
-  .price-card--featured {
-    border-color: color-mix(in srgb, var(--accent) 70%, var(--foreground2));
-    background:
-      linear-gradient(135deg, color-mix(in srgb, var(--accent) 10%, transparent), transparent 55%),
-      var(--panel-bg);
-  }
-
-  .price-topline {
-    width: 100%;
-    min-height: 1.6rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    color: var(--foreground2);
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-  }
-
   .price-card h3 {
-    margin-block: 1.15rem 0;
+    margin: 0;
     font-size: clamp(1.3rem, 3vw, 1.8rem);
     letter-spacing: -0.04em;
   }
@@ -204,7 +183,6 @@ Anything else I should know:</pre>
     font-size: 0.72rem;
     font-weight: 400;
     letter-spacing: 0;
-    text-transform: uppercase;
   }
 
   .summary {
@@ -241,18 +219,18 @@ Anything else I should know:</pre>
 
   .contact-grid {
     display: grid;
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
     gap: clamp(1.5rem, 5vw, 4rem);
   }
 
   .contact-copy h2 {
-    margin-block: 0.65rem 0;
+    margin: 0;
     font-size: clamp(1.6rem, 4vw, 2.5rem);
     line-height: 1;
     letter-spacing: -0.055em;
   }
 
-  .contact-copy > p:not(.eyebrow) {
+  .contact-copy > p {
     margin-block: 0.9rem 1.4rem;
     color: var(--foreground1);
   }
@@ -274,8 +252,6 @@ Anything else I should know:</pre>
   .contact-row > span {
     color: var(--foreground2);
     font-size: 0.76rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
   }
 
   .contact-row strong {
@@ -283,7 +259,7 @@ Anything else I should know:</pre>
     overflow-wrap: anywhere;
   }
 
-  .contact-row :is(button, a),
+  .contact-row a,
   #copy-template {
     border: 0;
     background: transparent;
@@ -305,23 +281,39 @@ Anything else I should know:</pre>
 
   .template-heading {
     display: flex;
-    align-items: end;
+    align-items: center;
     justify-content: space-between;
     gap: 1rem;
   }
 
   .template-heading h3 {
-    margin-block: 0.45rem 0;
+    margin: 0;
+  }
+
+  .template-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .template-columns > div {
+    min-width: 0;
+  }
+
+  .template-columns h4 {
+    margin-block: 1rem 0.5rem;
+    color: var(--foreground1);
   }
 
   .message-template pre {
-    margin-block: 1rem 0;
+    height: calc(100% - 2rem);
+    margin: 0;
     padding: 1rem;
     border: 1px solid color-mix(in srgb, var(--foreground2) 28%, transparent);
     background: var(--background1);
     color: var(--foreground1);
     font: inherit;
-    font-size: 0.84rem;
+    font-size: 0.78rem;
     white-space: pre-wrap;
   }
 
@@ -340,18 +332,18 @@ Anything else I should know:</pre>
     background: color-mix(in srgb, var(--foreground2) 28%, transparent);
   }
 
-  details {
+  .faq-card {
     background: var(--background1);
     padding: 1.1rem;
   }
 
-  summary {
-    cursor: pointer;
+  .faq-card h3 {
+    margin: 0;
     color: var(--foreground0);
-    font-weight: 700;
+    font-size: 1rem;
   }
 
-  details p {
+  .faq-card p {
     margin-block: 0.8rem 0;
     color: var(--foreground1);
     font-size: 0.88rem;
@@ -360,6 +352,7 @@ Anything else I should know:</pre>
   @media (max-width: 700px) {
     .pricing-grid,
     .contact-grid,
+    .template-columns,
     .faq-grid {
       grid-template-columns: 1fr;
     }

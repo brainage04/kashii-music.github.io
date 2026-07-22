@@ -2,32 +2,29 @@
 import PageHeader from '../../components/PageHeader.astro';
 import TerminalPanel from '../../components/TerminalPanel.astro';
 import TrackCard from '../../components/TrackCard.astro';
-import { soundCloudProfile, tracks } from '../../data/tracks';
+import { tracks } from '../../data/tracks';
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import { withBase } from '../../lib/withBase';
 
 const latestTrack = tracks[0]!;
-const playerUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(latestTrack.url)}&color=%2363ba24&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false`;
+const playerUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(latestTrack.url)}&color=%235f8c44&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false`;
 ---
 
 <SiteLayout
   title="Music"
-  description="Listen to my original electronic tracks, sample flips and selected music."
+  description="Listen to my electronic tracks, flips and covers."
   image={latestTrack.artwork}
 >
   <div class="site-stack projects-stack">
     <PageHeader
-      eyebrow="Music / Selected work"
-      title="An evolving catalogue."
-      description="Original electronic production, melodic experiments, flips and covers. Every track below links to my SoundCloud upload."
+      title="Projects"
+      description="I make fast electronic tracks with melodic ideas, heavy drums, and the occasional flip or cover."
     />
 
     <TerminalPanel title="Latest upload" class="featured-player" shear="none">
       <div class="player-layout">
         <div>
-          <p class="track-number">TRACK_001 / {latestTrack.releaseDate}</p>
           <h2>{latestTrack.title}</h2>
-          <p>kashii · {latestTrack.genre} · {latestTrack.format}</p>
+          <p>kashii · {latestTrack.genre} · {latestTrack.format} · {latestTrack.releaseDate}</p>
           <a href={latestTrack.url} target="_blank" rel="noreferrer">Open track on SoundCloud <span aria-hidden="true">↗</span></a>
         </div>
         <iframe
@@ -43,10 +40,7 @@ const playerUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(lat
 
     <section aria-labelledby="catalogue-title">
       <div class="section-heading">
-        <div>
-          <p class="eyebrow">Catalogue</p>
-          <h2 id="catalogue-title">All tracks</h2>
-        </div>
+        <h2 id="catalogue-title">All tracks</h2>
         <p>{tracks.length} public uploads · 2025—2026</p>
       </div>
       <div class="track-grid">
@@ -54,18 +48,6 @@ const playerUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(lat
       </div>
     </section>
 
-    <TerminalPanel title="Looking for a specific sound?" shear="bottom">
-      <div class="commission-note">
-        <div>
-          <h2>References are a starting point, not a copy.</h2>
-          <p>Send a mood, artist reference or rough voice memo and get a quote for an original production built around your project.</p>
-        </div>
-        <div class="panel-actions">
-          <a class="action-button" href={withBase('/commissions/')} is-="button">View commission options</a>
-          <a class="action-button action-button--ghost" href={soundCloudProfile} target="_blank" rel="noreferrer" is-="button">More on SoundCloud ↗</a>
-        </div>
-      </div>
-    </TerminalPanel>
   </div>
 </SiteLayout>
 
@@ -81,12 +63,6 @@ const playerUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(lat
     align-items: center;
   }
 
-  .track-number {
-    margin: 0;
-    color: var(--accent-soft);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-  }
 
   .player-layout h2 {
     margin-block: 0.6rem 0;
@@ -95,7 +71,7 @@ const playerUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(lat
     letter-spacing: -0.055em;
   }
 
-  .player-layout p:not(.track-number) {
+  .player-layout p {
     margin-block: 0.55rem 1.1rem;
     color: var(--foreground2);
   }
@@ -109,30 +85,9 @@ const playerUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(lat
     background: var(--background0);
   }
 
-  .commission-note {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  .commission-note h2,
-  .commission-note p {
-    margin: 0;
-  }
-
-  .commission-note h2 {
-    font-size: clamp(1.2rem, 3vw, 1.65rem);
-  }
-
-  .commission-note p {
-    margin-block-start: 0.45rem;
-    color: var(--foreground1);
-  }
 
   @media (max-width: 760px) {
-    .player-layout,
-    .commission-note {
+    .player-layout {
       grid-template-columns: 1fr;
     }
   }
