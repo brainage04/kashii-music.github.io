@@ -8,20 +8,20 @@
 @import '@webtui/css/components/separator.css';
 
 :root {
-  --background0: #0c0b10;
-  --background1: #141219;
-  --background2: #1d1a24;
-  --background3: #2b2635;
-  --foreground0: #f7f3ff;
-  --foreground1: #d8d0e2;
-  --foreground2: #948b9f;
-  --accent: #bd7aff;
-  --accent-soft: #d7b4ff;
-  --accent-hot: #ff7fc8;
-  --accent-cyan: #8edaf1;
-  --accent-green: #9ee5b1;
-  --accent-yellow: #f5d983;
-  --danger: #ff948d;
+  --background0: #11190f;
+  --background1: #19221b;
+  --background2: #253521;
+  --background3: #2d4d21;
+  --foreground0: #edf5dc;
+  --foreground1: #cde39f;
+  --foreground2: #5f8c44;
+  --accent: #63ba24;
+  --accent-soft: #cde39f;
+  --accent-hot: #78ba48;
+  --accent-cyan: #5f8c44;
+  --accent-green: #78ba48;
+  --accent-yellow: #cde39f;
+  --danger: #82976a;
   --panel-bg: color-mix(in srgb, var(--background1) 92%, transparent);
   --panel-border: color-mix(in srgb, var(--foreground2) 47%, transparent);
   --panel-shadow: 0 1.35rem 3.2rem color-mix(in srgb, #000 36%, transparent);
@@ -49,10 +49,7 @@ body {
   grid-template-rows: auto 1fr auto;
   margin: 0;
   line-height: 1.58;
-  background:
-    radial-gradient(circle at 88% 8%, color-mix(in srgb, var(--accent) 13%, transparent), transparent 24rem),
-    radial-gradient(circle at 7% 40%, color-mix(in srgb, var(--accent-hot) 6%, transparent), transparent 28rem),
-    var(--background0);
+  background: var(--background0);
   color: var(--foreground0);
   font-family: var(--font-family);
 }
@@ -246,15 +243,6 @@ textarea::placeholder {
   text-transform: uppercase;
 }
 
-.eyebrow::before {
-  content: '[ ';
-  color: var(--foreground2);
-}
-
-.eyebrow::after {
-  content: ' ]';
-  color: var(--foreground2);
-}
 
 .hero-actions,
 .panel-actions {

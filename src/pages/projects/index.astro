@@ -7,19 +7,19 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
 import { withBase } from '../../lib/withBase';
 
 const latestTrack = tracks[0]!;
-const playerUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(latestTrack.url)}&color=%23bd7aff&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false`;
+const playerUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(latestTrack.url)}&color=%2363ba24&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false`;
 ---
 
 <SiteLayout
   title="Music"
-  description="Listen to original electronic tracks, sample flips and selected music by independent producer kashii."
+  description="Listen to my original electronic tracks, sample flips and selected music."
   image={latestTrack.artwork}
 >
   <div class="site-stack projects-stack">
     <PageHeader
       eyebrow="Music / Selected work"
       title="An evolving catalogue."
-      description="Original electronic production, melodic experiments, flips and covers. Every track below links to the verified kashii SoundCloud upload."
+      description="Original electronic production, melodic experiments, flips and covers. Every track below links to my SoundCloud upload."
     />
 
     <TerminalPanel title="Latest upload" class="featured-player" shear="none">

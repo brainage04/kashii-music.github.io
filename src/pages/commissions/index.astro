@@ -8,20 +8,20 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
 
 <SiteLayout
   title="Commissions"
-  description="Music production commission options and starter pricing from kashii, including custom instrumentals, beat licences, mixing and full production."
+  description="My music production commission options and starter pricing, including custom instrumentals, beat licences, mixing and full production."
 >
   <div class="site-stack commissions-stack">
     <PageHeader
       eyebrow="Commissions / Open"
-      title="Your idea, built louder."
-      description="Choose a starting point, send the brief and get a clear quote before work begins. Introductory prices are listed in Australian dollars."
+      title="Production commissions."
+      description="Choose a starting point and send me the details. I’ll confirm the scope and final quote before work begins. Introductory prices are listed in Australian dollars."
     />
 
     <section aria-labelledby="pricing-title">
       <div class="section-heading">
         <div>
           <p class="eyebrow">Starter pricing</p>
-          <h2 id="pricing-title">Pick the right lane</h2>
+          <h2 id="pricing-title">Choose a service</h2>
         </div>
         <p>All prices from · AUD</p>
       </div>
@@ -39,7 +39,7 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
             <ul>
               {service.includes.map((item) => <li>{item}</li>)}
             </ul>
-            <a href="#inquiry" data-service={service.name}>Choose {service.name.toLowerCase()} <span aria-hidden="true">→</span></a>
+            <a href="#contact">Choose {service.name.toLowerCase()} <span aria-hidden="true">→</span></a>
           </article>
         ))}
       </div>
@@ -53,89 +53,63 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
       <div class="section-heading">
         <div>
           <p class="eyebrow">How it works</p>
-          <h2 id="workflow-title">No mystery in the process</h2>
+          <h2 id="workflow-title">How commissions work</h2>
         </div>
       </div>
       <ol class="flow-list">
-        <li><strong>01 / Send</strong><p>Build a short brief below, then send it through SoundCloud.</p></li>
+        <li><strong>01 / Send</strong><p>Use the contact details below to send me a short project brief.</p></li>
         <li><strong>02 / Quote</strong><p>Scope, price, revisions, rights and timing are confirmed in writing.</p></li>
         <li><strong>03 / Create</strong><p>A first pass is produced and shared at the agreed review point.</p></li>
         <li><strong>04 / Finish</strong><p>Feedback is applied and the approved files are delivered.</p></li>
       </ol>
     </section>
 
-    <TerminalPanel title="Build your inquiry" id="inquiry" class="inquiry-panel" shear="none">
-      <div class="inquiry-intro">
-        <div>
-          <p class="eyebrow">Project brief</p>
-          <h2>Make the first message count.</h2>
-        </div>
-        <p>Fill this in to generate a clean brief. Nothing is uploaded or stored; copy the result and send it to kashii on SoundCloud.</p>
-      </div>
+    <TerminalPanel title="Contact" id="contact" class="contact-panel" shear="none">
+      <div class="contact-grid">
+        <div class="contact-copy">
+          <p class="eyebrow">Contact</p>
+          <h2>Send me the project details.</h2>
+          <p>Discord is the best way to reach me. You can also use my SoundCloud profile.</p>
 
-      <form id="commission-form">
-        <div class="form-grid">
-          <label>
-            <span>Service <b aria-hidden="true">*</b></span>
-            <select id="service" name="service" required>
-              <option value="">Select a service</option>
-              {services.map((service) => <option value={service.name}>{service.name} — from {service.price}</option>)}
-              <option value="Not sure yet">Not sure yet</option>
-            </select>
-          </label>
-
-          <label>
-            <span>Budget range <b aria-hidden="true">*</b></span>
-            <select name="budget" required>
-              <option value="">Select a range</option>
-              <option>Under A$100</option>
-              <option>A$100–250</option>
-              <option>A$250–500</option>
-              <option>Let’s discuss</option>
-            </select>
-          </label>
-
-          <label>
-            <span>Ideal deadline</span>
-            <input type="date" name="deadline" />
-          </label>
-
-          <label>
-            <span>Reference links</span>
-            <input type="url" name="references" placeholder="https://soundcloud.com/…" />
-          </label>
-        </div>
-
-        <label>
-          <span>What are we making? <b aria-hidden="true">*</b></span>
-          <textarea
-            name="brief"
-            required
-            minlength="20"
-            placeholder="Tell kashii about the artist, mood, intended use, must-have elements and what you already have…"
-          ></textarea>
-        </label>
-
-        <div class="form-actions">
-          <button class="action-button" type="submit" is-="button">Generate inquiry <span aria-hidden="true">→</span></button>
-          <span>Required fields are marked *</span>
-        </div>
-      </form>
-
-      <section class="brief-result" id="brief-result" aria-live="polite" hidden>
-        <div class="result-heading">
-          <div>
-            <p class="eyebrow">Ready to send</p>
-            <h3>Your inquiry brief</h3>
+          <div class="contact-list">
+            <div class="contact-row">
+              <span>Discord</span>
+              <strong>helpimdead111</strong>
+              <button type="button" data-copy-text="helpimdead111" data-copy-label="Discord username">Copy</button>
+            </div>
+            <div class="contact-row">
+              <span>SoundCloud</span>
+              <strong>@kashii</strong>
+              <a href={soundCloudProfile} target="_blank" rel="noreferrer">Open ↗</a>
+            </div>
           </div>
-          <span id="copy-status" role="status"></span>
+
+          <div class="panel-actions">
+            <a class="action-button action-button--ghost" href="https://discord.com/app" target="_blank" rel="noreferrer" is-="button">Open Discord ↗</a>
+          </div>
         </div>
-        <pre id="brief-output"></pre>
-        <div class="panel-actions">
-          <button class="action-button" type="button" id="copy-brief" is-="button">Copy brief</button>
-          <a class="action-button action-button--ghost" href={soundCloudProfile} target="_blank" rel="noreferrer" is-="button">Open kashii on SoundCloud ↗</a>
+
+        <div class="message-template">
+          <div class="template-heading">
+            <div>
+              <p class="eyebrow">Message template</p>
+              <h3>Include the useful details</h3>
+            </div>
+            <button type="button" id="copy-template">Copy template</button>
+          </div>
+          <pre id="message-template">Hi, I’m [name].
+
+Service:
+Project:
+Reference links:
+Budget:
+Deadline:
+Intended use:
+
+Anything else I should know:</pre>
+          <p id="contact-status" role="status" aria-live="polite"></p>
         </div>
-      </section>
+      </div>
     </TerminalPanel>
 
     <section aria-labelledby="faq-title">
@@ -160,13 +134,13 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
         </details>
         <details>
           <summary>How long will it take?</summary>
-          <p>Timing depends on the project and current queue. Include your real deadline in the brief so availability can be confirmed up front.</p>
+          <p>Timing depends on the project and my current queue. Include your real deadline so I can confirm availability up front.</p>
         </details>
       </div>
     </section>
   </div>
 
-  <script src="../../scripts/inquiry.ts"></script>
+  <script src="../../scripts/contact.ts"></script>
 </SiteLayout>
 
 <style>
@@ -265,90 +239,97 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
     font-size: 0.8rem;
   }
 
-  .inquiry-intro {
+  .contact-grid {
     display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: 2rem;
-    margin-block-end: 1.5rem;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(1.5rem, 5vw, 4rem);
   }
 
-  .inquiry-intro h2 {
+  .contact-copy h2 {
     margin-block: 0.65rem 0;
     font-size: clamp(1.6rem, 4vw, 2.5rem);
     line-height: 1;
     letter-spacing: -0.055em;
   }
 
-  .inquiry-intro > p {
-    margin: 0;
+  .contact-copy > p:not(.eyebrow) {
+    margin-block: 0.9rem 1.4rem;
     color: var(--foreground1);
   }
 
-  form {
+  .contact-list {
+    margin-block-end: 1.25rem;
+    border-block-end: 1px solid color-mix(in srgb, var(--foreground2) 30%, transparent);
+  }
+
+  .contact-row {
     display: grid;
-    gap: 1rem;
-  }
-
-  .form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-  }
-
-  label {
-    display: grid;
-    gap: 0.4rem;
-    color: var(--foreground1);
-    font-size: 0.82rem;
-  }
-
-  label b {
-    color: var(--accent-hot);
-  }
-
-  .form-actions {
-    display: flex;
-    flex-wrap: wrap;
+    grid-template-columns: 6.5rem minmax(0, 1fr) auto;
     align-items: center;
-    gap: 0.85rem;
-  }
-
-  .form-actions > span {
-    color: var(--foreground2);
-    font-size: 0.75rem;
-  }
-
-  .brief-result {
-    margin-block-start: 1.5rem;
+    gap: 0.75rem;
+    padding-block: 0.85rem;
     border-block-start: 1px solid color-mix(in srgb, var(--foreground2) 30%, transparent);
-    padding-block-start: 1.5rem;
   }
 
-  .result-heading {
+  .contact-row > span {
+    color: var(--foreground2);
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .contact-row strong {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .contact-row :is(button, a),
+  #copy-template {
+    border: 0;
+    background: transparent;
+    color: var(--accent-soft);
+    padding: 0;
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .message-template {
+    min-width: 0;
+    border: 1px solid var(--control-border);
+    background: var(--background0);
+    padding: 1rem;
+  }
+
+  .template-heading {
     display: flex;
     align-items: end;
     justify-content: space-between;
     gap: 1rem;
   }
 
-  .result-heading h3 {
+  .template-heading h3 {
     margin-block: 0.45rem 0;
   }
 
-  #copy-status {
-    color: var(--accent-green);
-    font-size: 0.8rem;
-  }
-
-  pre {
-    margin-block: 1rem;
+  .message-template pre {
+    margin-block: 1rem 0;
     padding: 1rem;
-    border: 1px solid var(--control-border);
-    background: var(--background0);
+    border: 1px solid color-mix(in srgb, var(--foreground2) 28%, transparent);
+    background: var(--background1);
     color: var(--foreground1);
     font: inherit;
     font-size: 0.84rem;
     white-space: pre-wrap;
+  }
+
+  #contact-status {
+    min-height: 1.25rem;
+    margin-block: 0.65rem 0;
+    color: var(--accent-green);
+    font-size: 0.78rem;
   }
 
   .faq-grid {
@@ -378,10 +359,13 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
 
   @media (max-width: 700px) {
     .pricing-grid,
-    .form-grid,
-    .inquiry-intro,
+    .contact-grid,
     .faq-grid {
       grid-template-columns: 1fr;
+    }
+
+    .contact-row {
+      grid-template-columns: 5.5rem minmax(0, 1fr) auto;
     }
   }
 </style>
