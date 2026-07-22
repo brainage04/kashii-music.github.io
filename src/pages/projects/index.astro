@@ -1,0 +1,139 @@
+---
+import PageHeader from '../../components/PageHeader.astro';
+import TerminalPanel from '../../components/TerminalPanel.astro';
+import TrackCard from '../../components/TrackCard.astro';
+import { soundCloudProfile, tracks } from '../../data/tracks';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { withBase } from '../../lib/withBase';
+
+const latestTrack = tracks[0]!;
+const playerUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(latestTrack.url)}&color=%23bd7aff&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false`;
+---
+
+<SiteLayout
+  title="Music"
+  description="Listen to original electronic tracks, sample flips and selected music by independent producer kashii."
+  image={latestTrack.artwork}
+>
+  <div class="site-stack projects-stack">
+    <PageHeader
+      eyebrow="Music / Selected work"
+      title="An evolving catalogue."
+      description="Original electronic production, melodic experiments, flips and covers. Every track below links to the verified kashii SoundCloud upload."
+    />
+
+    <TerminalPanel title="Latest upload" class="featured-player" shear="none">
+      <div class="player-layout">
+        <div>
+          <p class="track-number">TRACK_001 / {latestTrack.releaseDate}</p>
+          <h2>{latestTrack.title}</h2>
+          <p>kashii · {latestTrack.genre} · {latestTrack.format}</p>
+          <a href={latestTrack.url} target="_blank" rel="noreferrer">Open track on SoundCloud <span aria-hidden="true">↗</span></a>
+        </div>
+        <iframe
+          title={`SoundCloud player for ${latestTrack.title}`}
+          width="100%"
+          height="166"
+          allow="autoplay"
+          loading="lazy"
+          src={playerUrl}
+        ></iframe>
+      </div>
+    </TerminalPanel>
+
+    <section aria-labelledby="catalogue-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Catalogue</p>
+          <h2 id="catalogue-title">All tracks</h2>
+        </div>
+        <p>{tracks.length} public uploads · 2025—2026</p>
+      </div>
+      <div class="track-grid">
+        {tracks.map((track, index) => <TrackCard track={track} index={index} priority={index < 3} />)}
+      </div>
+    </section>
+
+    <TerminalPanel title="Looking for a specific sound?" shear="bottom">
+      <div class="commission-note">
+        <div>
+          <h2>References are a starting point, not a copy.</h2>
+          <p>Send a mood, artist reference or rough voice memo and get a quote for an original production built around your project.</p>
+        </div>
+        <div class="panel-actions">
+          <a class="action-button" href={withBase('/commissions/')} is-="button">View commission options</a>
+          <a class="action-button action-button--ghost" href={soundCloudProfile} target="_blank" rel="noreferrer" is-="button">More on SoundCloud ↗</a>
+        </div>
+      </div>
+    </TerminalPanel>
+  </div>
+</SiteLayout>
+
+<style>
+  .projects-stack {
+    gap: clamp(3rem, 7vw, 5.5rem);
+  }
+
+  .player-layout {
+    display: grid;
+    grid-template-columns: minmax(13rem, 0.65fr) minmax(18rem, 1.35fr);
+    gap: clamp(1.25rem, 4vw, 3rem);
+    align-items: center;
+  }
+
+  .track-number {
+    margin: 0;
+    color: var(--accent-soft);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+  }
+
+  .player-layout h2 {
+    margin-block: 0.6rem 0;
+    font-size: clamp(1.7rem, 4vw, 2.7rem);
+    line-height: 1;
+    letter-spacing: -0.055em;
+  }
+
+  .player-layout p:not(.track-number) {
+    margin-block: 0.55rem 1.1rem;
+    color: var(--foreground2);
+  }
+
+  .player-layout a {
+    color: var(--accent-soft);
+    font-weight: 700;
+  }
+
+  .player-layout iframe {
+    background: var(--background0);
+  }
+
+  .commission-note {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .commission-note h2,
+  .commission-note p {
+    margin: 0;
+  }
+
+  .commission-note h2 {
+    font-size: clamp(1.2rem, 3vw, 1.65rem);
+  }
+
+  .commission-note p {
+    margin-block-start: 0.45rem;
+    color: var(--foreground1);
+  }
+
+  @media (max-width: 760px) {
+    .player-layout,
+    .commission-note {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

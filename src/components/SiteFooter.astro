@@ -1,0 +1,85 @@
+---
+import { withBase } from '../lib/withBase';
+import { siteConfig } from '../site.config';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <a class="footer-mark" href={withBase('/')}>kashii.wav</a>
+      <p>Electronic production with feeling, movement and edge.</p>
+    </div>
+
+    <div class="footer-links" aria-label="Footer navigation">
+      <a href={withBase('/projects/')}>Music</a>
+      <a href={withBase('/commissions/')}>Commissions</a>
+      <a href={siteConfig.soundCloudUrl} target="_blank" rel="noreferrer">SoundCloud ↗</a>
+    </div>
+
+    <p class="copyright">© {year} kashii<br />Built with Astro + WebTUI</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-block-start: clamp(2rem, 5vw, 5rem);
+    border-block-start: 1px solid color-mix(in srgb, var(--foreground2) 28%, transparent);
+    color: var(--foreground2);
+  }
+
+  .footer-inner {
+    width: min(100% - 1.5rem, var(--site-width));
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: 1.35fr 1fr auto;
+    gap: 2rem;
+    align-items: start;
+    padding-block: clamp(1.5rem, 4vw, 2.6rem);
+  }
+
+  .footer-mark {
+    color: var(--foreground0);
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  p {
+    margin: 0.45rem 0 0;
+    font-size: 0.82rem;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+  }
+
+  .footer-links a {
+    color: var(--foreground1);
+    font-size: 0.82rem;
+    text-underline-offset: 0.2em;
+  }
+
+  .footer-links a:hover {
+    color: var(--accent-soft);
+  }
+
+  .copyright {
+    margin: 0;
+    text-align: end;
+  }
+
+  @media (max-width: 700px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .copyright {
+      text-align: start;
+    }
+  }
+</style>

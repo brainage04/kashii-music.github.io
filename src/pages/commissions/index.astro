@@ -1,0 +1,387 @@
+---
+import PageHeader from '../../components/PageHeader.astro';
+import TerminalPanel from '../../components/TerminalPanel.astro';
+import { services } from '../../data/services';
+import { soundCloudProfile } from '../../data/tracks';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+---
+
+<SiteLayout
+  title="Commissions"
+  description="Music production commission options and starter pricing from kashii, including custom instrumentals, beat licences, mixing and full production."
+>
+  <div class="site-stack commissions-stack">
+    <PageHeader
+      eyebrow="Commissions / Open"
+      title="Your idea, built louder."
+      description="Choose a starting point, send the brief and get a clear quote before work begins. Introductory prices are listed in Australian dollars."
+    />
+
+    <section aria-labelledby="pricing-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Starter pricing</p>
+          <h2 id="pricing-title">Pick the right lane</h2>
+        </div>
+        <p>All prices from · AUD</p>
+      </div>
+
+      <div class="pricing-grid">
+        {services.map((service) => (
+          <article class:list={['price-card', { 'price-card--featured': service.featured }]} box-="square">
+            <div class="price-topline">
+              <span>{service.id.toUpperCase().replaceAll('-', '_')}</span>
+              {service.featured && <span class="site-badge" is-="badge">Most requested</span>}
+            </div>
+            <h3>{service.name}</h3>
+            <p class="price"><small>from</small> {service.price}</p>
+            <p class="summary">{service.summary}</p>
+            <ul>
+              {service.includes.map((item) => <li>{item}</li>)}
+            </ul>
+            <a href="#inquiry" data-service={service.name}>Choose {service.name.toLowerCase()} <span aria-hidden="true">→</span></a>
+          </article>
+        ))}
+      </div>
+
+      <p class="pricing-note">
+        Final quotes depend on scope, deadline and intended usage. Any deliverables, revisions and usage rights are agreed in writing before work starts.
+      </p>
+    </section>
+
+    <section aria-labelledby="workflow-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">How it works</p>
+          <h2 id="workflow-title">No mystery in the process</h2>
+        </div>
+      </div>
+      <ol class="flow-list">
+        <li><strong>01 / Send</strong><p>Build a short brief below, then send it through SoundCloud.</p></li>
+        <li><strong>02 / Quote</strong><p>Scope, price, revisions, rights and timing are confirmed in writing.</p></li>
+        <li><strong>03 / Create</strong><p>A first pass is produced and shared at the agreed review point.</p></li>
+        <li><strong>04 / Finish</strong><p>Feedback is applied and the approved files are delivered.</p></li>
+      </ol>
+    </section>
+
+    <TerminalPanel title="Build your inquiry" id="inquiry" class="inquiry-panel" shear="none">
+      <div class="inquiry-intro">
+        <div>
+          <p class="eyebrow">Project brief</p>
+          <h2>Make the first message count.</h2>
+        </div>
+        <p>Fill this in to generate a clean brief. Nothing is uploaded or stored; copy the result and send it to kashii on SoundCloud.</p>
+      </div>
+
+      <form id="commission-form">
+        <div class="form-grid">
+          <label>
+            <span>Service <b aria-hidden="true">*</b></span>
+            <select id="service" name="service" required>
+              <option value="">Select a service</option>
+              {services.map((service) => <option value={service.name}>{service.name} — from {service.price}</option>)}
+              <option value="Not sure yet">Not sure yet</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Budget range <b aria-hidden="true">*</b></span>
+            <select name="budget" required>
+              <option value="">Select a range</option>
+              <option>Under A$100</option>
+              <option>A$100–250</option>
+              <option>A$250–500</option>
+              <option>Let’s discuss</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Ideal deadline</span>
+            <input type="date" name="deadline" />
+          </label>
+
+          <label>
+            <span>Reference links</span>
+            <input type="url" name="references" placeholder="https://soundcloud.com/…" />
+          </label>
+        </div>
+
+        <label>
+          <span>What are we making? <b aria-hidden="true">*</b></span>
+          <textarea
+            name="brief"
+            required
+            minlength="20"
+            placeholder="Tell kashii about the artist, mood, intended use, must-have elements and what you already have…"
+          ></textarea>
+        </label>
+
+        <div class="form-actions">
+          <button class="action-button" type="submit" is-="button">Generate inquiry <span aria-hidden="true">→</span></button>
+          <span>Required fields are marked *</span>
+        </div>
+      </form>
+
+      <section class="brief-result" id="brief-result" aria-live="polite" hidden>
+        <div class="result-heading">
+          <div>
+            <p class="eyebrow">Ready to send</p>
+            <h3>Your inquiry brief</h3>
+          </div>
+          <span id="copy-status" role="status"></span>
+        </div>
+        <pre id="brief-output"></pre>
+        <div class="panel-actions">
+          <button class="action-button" type="button" id="copy-brief" is-="button">Copy brief</button>
+          <a class="action-button action-button--ghost" href={soundCloudProfile} target="_blank" rel="noreferrer" is-="button">Open kashii on SoundCloud ↗</a>
+        </div>
+      </section>
+    </TerminalPanel>
+
+    <section aria-labelledby="faq-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Before you ask</p>
+          <h2 id="faq-title">Quick answers</h2>
+        </div>
+      </div>
+      <div class="faq-grid">
+        <details open>
+          <summary>What should I send?</summary>
+          <p>A short goal, two or three references, your budget, deadline and anything already recorded. Voice memos and rough demos are useful.</p>
+        </details>
+        <details>
+          <summary>Are the listed prices final?</summary>
+          <p>They are starting prices in AUD. The final quote reflects scope, turnaround and intended usage, and is confirmed before work starts.</p>
+        </details>
+        <details>
+          <summary>Who owns the finished music?</summary>
+          <p>Usage rights vary by service. The agreed licence, credits and permitted use will be written into the quote before production begins.</p>
+        </details>
+        <details>
+          <summary>How long will it take?</summary>
+          <p>Timing depends on the project and current queue. Include your real deadline in the brief so availability can be confirmed up front.</p>
+        </details>
+      </div>
+    </section>
+  </div>
+
+  <script src="../../scripts/inquiry.ts"></script>
+</SiteLayout>
+
+<style>
+  .commissions-stack {
+    gap: clamp(3rem, 7vw, 5.5rem);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .price-card {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-color: var(--panel-border);
+    background: var(--panel-bg);
+    padding: clamp(1.1rem, 3vw, 1.6rem);
+    box-shadow: var(--panel-shadow);
+  }
+
+  .price-card--featured {
+    border-color: color-mix(in srgb, var(--accent) 70%, var(--foreground2));
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--accent) 10%, transparent), transparent 55%),
+      var(--panel-bg);
+  }
+
+  .price-topline {
+    width: 100%;
+    min-height: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    color: var(--foreground2);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+  }
+
+  .price-card h3 {
+    margin-block: 1.15rem 0;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    letter-spacing: -0.04em;
+  }
+
+  .price {
+    margin-block: 0.5rem 0;
+    color: var(--accent-soft);
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.07em;
+  }
+
+  .price small {
+    color: var(--foreground2);
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .summary {
+    margin-block: 0.9rem 0;
+    color: var(--foreground1);
+  }
+
+  .price-card ul {
+    display: grid;
+    gap: 0.45rem;
+    margin-block: 1rem 1.3rem;
+    padding: 0;
+    list-style: none;
+    color: var(--foreground1);
+    font-size: 0.86rem;
+  }
+
+  .price-card li::before {
+    content: '+ ';
+    color: var(--accent);
+  }
+
+  .price-card > a {
+    margin-block-start: auto;
+    color: var(--accent-soft);
+    font-weight: 700;
+  }
+
+  .pricing-note {
+    margin: 1rem 0 0;
+    color: var(--foreground2);
+    font-size: 0.8rem;
+  }
+
+  .inquiry-intro {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 2rem;
+    margin-block-end: 1.5rem;
+  }
+
+  .inquiry-intro h2 {
+    margin-block: 0.65rem 0;
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
+    line-height: 1;
+    letter-spacing: -0.055em;
+  }
+
+  .inquiry-intro > p {
+    margin: 0;
+    color: var(--foreground1);
+  }
+
+  form {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  label {
+    display: grid;
+    gap: 0.4rem;
+    color: var(--foreground1);
+    font-size: 0.82rem;
+  }
+
+  label b {
+    color: var(--accent-hot);
+  }
+
+  .form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .form-actions > span {
+    color: var(--foreground2);
+    font-size: 0.75rem;
+  }
+
+  .brief-result {
+    margin-block-start: 1.5rem;
+    border-block-start: 1px solid color-mix(in srgb, var(--foreground2) 30%, transparent);
+    padding-block-start: 1.5rem;
+  }
+
+  .result-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .result-heading h3 {
+    margin-block: 0.45rem 0;
+  }
+
+  #copy-status {
+    color: var(--accent-green);
+    font-size: 0.8rem;
+  }
+
+  pre {
+    margin-block: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--control-border);
+    background: var(--background0);
+    color: var(--foreground1);
+    font: inherit;
+    font-size: 0.84rem;
+    white-space: pre-wrap;
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    padding: 1px;
+    background: color-mix(in srgb, var(--foreground2) 28%, transparent);
+  }
+
+  details {
+    background: var(--background1);
+    padding: 1.1rem;
+  }
+
+  summary {
+    cursor: pointer;
+    color: var(--foreground0);
+    font-weight: 700;
+  }
+
+  details p {
+    margin-block: 0.8rem 0;
+    color: var(--foreground1);
+    font-size: 0.88rem;
+  }
+
+  @media (max-width: 700px) {
+    .pricing-grid,
+    .form-grid,
+    .inquiry-intro,
+    .faq-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
