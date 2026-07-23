@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { siteConfig } from '../site.config';
 import { withBase } from '../lib/withBase';
 
@@ -6,7 +7,7 @@ const discordProfileUrl = 'https://discord.com/users/576348645742608387';
 ---
 
 <section class="profile-card terminal-panel" box-="square" shear-="top">
-  <img
+  <Image
     class="avatar"
     src={withBase('/kashii-avatar.webp')}
     alt="kashii's Discord profile artwork"
@@ -113,6 +114,8 @@ const discordProfileUrl = 'https://discord.com/users/576348645742608387';
   @media (max-width: 620px) {
     .profile-card {
       grid-template-columns: 1fr;
+      gap: 1.1rem;
+      padding: 1.15rem;
     }
 
     .avatar {
@@ -126,7 +129,13 @@ const discordProfileUrl = 'https://discord.com/users/576348645742608387';
     }
 
     .profile-copy {
+      max-width: 34ch;
+      margin-inline: auto;
       text-align: center;
+    }
+
+    h1 {
+      font-size: clamp(1.5rem, 8vw, 2rem);
     }
   }
 </style>

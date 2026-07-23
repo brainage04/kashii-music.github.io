@@ -377,6 +377,27 @@ textarea::placeholder {
 
 }
 
+@media (max-width: 520px) {
+  main {
+    width: min(100% - 1rem, var(--site-width));
+    padding-block: 1rem 2rem;
+  }
+
+  .site-stack,
+  .stack {
+    gap: 1rem;
+  }
+
+  .terminal-panel {
+    padding: 1rem;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    gap: 0.5rem 0.75rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html,
   body {

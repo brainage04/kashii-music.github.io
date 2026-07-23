@@ -6,4 +6,7 @@ const base = process.env.PUBLIC_BASE_PATH ?? '/';
 export default defineConfig({
   ...(site ? { site } : {}),
   base,
+  image: {
+    domains: ['i1.sndcdn.com'],
+  },
 });
