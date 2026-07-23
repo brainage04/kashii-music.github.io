@@ -65,6 +65,7 @@ const discordProfileUrl = 'https://discord.com/users/576348645742608387';
     margin: 0;
     font-size: clamp(1.6rem, 4vw, 2.4rem);
     letter-spacing: -0.045em;
+    line-height: 1;
   }
 
   p {
@@ -73,24 +74,28 @@ const discordProfileUrl = 'https://discord.com/users/576348645742608387';
   }
 
   .socials {
+    --social-icon-height: 22px;
     display: flex;
     flex-wrap: wrap;
     gap: 0.65rem;
     align-items: center;
+    line-height: 0;
   }
 
   .socials a {
-    display: inline-grid;
-    place-items: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     min-width: 1.5rem;
-    min-height: 1.5rem;
+    min-height: var(--social-icon-height);
   }
 
   .socials img {
     display: block;
     width: auto;
-    height: 22px;
+    height: var(--social-icon-height);
     max-width: none;
+    object-fit: contain;
     filter: grayscale(1) brightness(1.8);
     opacity: 0.78;
     transition: filter 150ms ease, opacity 150ms ease;

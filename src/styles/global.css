@@ -28,8 +28,9 @@
   --control-bg: color-mix(in srgb, var(--background0) 80%, transparent);
   --control-border: color-mix(in srgb, var(--foreground2) 54%, transparent);
   --control-height: 2.9rem;
-  --font-family: 'Courier New', Courier, ui-monospace, monospace;
-  --site-width: 74rem;
+  --font-family: 'Courier New', Courier, monospace;
+  --site-width: 70rem;
+  --site-footer-width: 72rem;
   color-scheme: dark;
 }
 
@@ -48,7 +49,7 @@ body {
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto 1fr auto;
   margin: 0;
-  line-height: 1.58;
+  line-height: 1.55;
   background: var(--background0);
   color: var(--foreground0);
   font-family: var(--font-family);
@@ -74,7 +75,7 @@ main {
   min-width: 0;
   width: min(100% - 1.5rem, var(--site-width));
   margin-inline: auto;
-  padding-block: clamp(2rem, 5vw, 5rem);
+  padding-block: clamp(1.75rem, 4vw, 4.5rem);
 }
 
 img,
@@ -193,7 +194,7 @@ textarea::placeholder {
 .site-stack,
 .stack {
   display: grid;
-  gap: clamp(1.25rem, 2.5vw, 2rem);
+  gap: clamp(1.25rem, 2.25vw, 1.85rem);
 }
 
 .grid {
@@ -222,7 +223,7 @@ textarea::placeholder {
   border-color: var(--panel-border);
   background: var(--panel-bg);
   box-shadow: inset 0 1px 0 color-mix(in srgb, var(--foreground0) 5%, transparent), var(--panel-shadow);
-  padding: clamp(1.1rem, 2.5vw, 1.6rem);
+  padding: clamp(1.1rem, 2.5vw, 1.65rem);
 }
 
 .panel-header,
@@ -348,6 +349,13 @@ textarea::placeholder {
 }
 
 
+@media (max-width: 760px) {
+  main {
+    width: min(100% - 1.25rem, var(--site-width));
+    padding-block: 1.15rem 2.25rem;
+  }
+}
+
 @media (max-width: 900px) {
   .track-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -359,14 +367,7 @@ textarea::placeholder {
 }
 
 @media (max-width: 640px) {
-  main {
-    width: min(100% - 1rem, var(--site-width));
-    padding-block-start: 2rem;
-  }
 
-  .terminal-panel {
-    padding: 1rem;
-  }
 
 
   .track-grid,
