@@ -1,5 +1,4 @@
 ---
-import PageHeader from '../../components/PageHeader.astro';
 import TerminalPanel from '../../components/TerminalPanel.astro';
 import { services } from '../../data/services';
 import { soundCloudProfile } from '../../data/tracks';
@@ -9,19 +8,16 @@ const discordProfileUrl = 'https://discord.com/users/576348645742608387';
 
 <SiteLayout
   title="Commissions"
-  description="My music production commission options and starter pricing, including custom instrumentals, beat licences, mixing and full production."
+  description="Music production commissions for custom beats, mixing, beat licences and full song production."
 >
   <div class="site-stack commissions-stack">
-    <PageHeader
-      title="Commissions"
-      description="Pick what’s closest to what you need, then send me the details. These are starting prices in AUD, and I’ll confirm the final price before I start."
-    />
+    <h1 class="sr-only">Commissions</h1>
 
     <section aria-labelledby="pricing-title">
       <div class="section-heading">
         <h2 id="pricing-title">Choose a service</h2>
-        <p>Starting prices · AUD</p>
       </div>
+      <p class="pricing-intro">Pick what’s closest to what you need, then send me the details and I’ll confirm the final price before I start. Starting prices are in AUD.</p>
 
       <div class="pricing-grid">
         {services.map((service) => (
@@ -32,13 +28,13 @@ const discordProfileUrl = 'https://discord.com/users/576348645742608387';
             <ul>
               {service.includes.map((item) => <li>{item}</li>)}
             </ul>
-            <a href="#contact">Choose {service.name.toLowerCase()} <span aria-hidden="true">→</span></a>
+            <a href="#contact">Ask about this service <span aria-hidden="true">→</span></a>
           </article>
         ))}
       </div>
 
       <p class="pricing-note">
-        Final quotes depend on scope, deadline and intended usage. Any deliverables, revisions and usage rights are agreed in writing before work starts.
+        Final quotes depend on the project, deadline and how the music will be used. We’ll agree on files, revisions and usage before I start.
       </p>
     </section>
 
@@ -54,17 +50,17 @@ const discordProfileUrl = 'https://discord.com/users/576348645742608387';
       </ol>
     </section>
 
-    <TerminalPanel title="Contact" id="contact" class="contact-panel" shear="none">
+    <TerminalPanel id="contact" class="contact-panel" shear="none">
       <div class="contact-grid">
         <div class="contact-copy">
-          <h2>Send me the project details.</h2>
+          <h2>Contact</h2>
           <p>Discord is the best way to reach me. You can also use my SoundCloud profile.</p>
 
           <div class="contact-list">
             <div class="contact-row">
               <span>Discord</span>
               <strong>helpimdead111</strong>
-              <a href={discordProfileUrl} target="_blank" rel="noreferrer">Profile URL ↗</a>
+              <a href={discordProfileUrl} target="_blank" rel="noreferrer">Open ↗</a>
             </div>
             <div class="contact-row">
               <span>SoundCloud</span>
@@ -85,7 +81,7 @@ const discordProfileUrl = 'https://discord.com/users/576348645742608387';
               <h4>Template</h4>
               <pre id="message-template">Hi, I’m [your name].
 
-Service: [e.g. custom instrumental]
+Service: [e.g. custom beat]
 Project: [what you want made]
 Reference links: [two or three songs with a similar sound]
 Budget: [your budget in AUD]
@@ -98,7 +94,7 @@ Anything else I should know: [vocals, stems or other useful details]</pre>
               <h4>Example</h4>
               <pre>Hi, I’m Alex.
 
-Service: Custom instrumental
+Service: Custom beat
 Project: A fast electronic track for a vocal single
 Reference links: Two SoundCloud or Spotify track URLs
 Budget: A$180
@@ -115,7 +111,7 @@ Anything else I should know: I have the vocals recorded and would also like an i
 
     <section aria-labelledby="faq-title">
       <div class="section-heading">
-        <h2 id="faq-title">Quick answers</h2>
+        <h2 id="faq-title">Q&A</h2>
       </div>
       <div class="faq-grid">
         <article class="faq-card">
@@ -150,6 +146,11 @@ Anything else I should know: I have the vocals recorded and would also like an i
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
+  }
+
+  .pricing-intro {
+    margin-block: 0 1.25rem;
+    color: var(--foreground1);
   }
 
   .price-card {

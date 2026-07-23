@@ -7,27 +7,27 @@ export interface Service {
 
 export const services: readonly Service[] = [
   {
-    name: 'Beat licence',
+    name: 'Existing beat licence',
     price: 'A$40',
-    summary: 'Choose an available instrumental and get it ready for your release.',
-    includes: ['High-quality WAV', 'Non-exclusive usage terms', 'Credit guidance'],
+    summary: 'Licence one of my available beats for your own release.',
+    includes: ['WAV instrumental', 'Non-exclusive licence', 'Clear credit and usage terms'],
   },
   {
-    name: 'Custom instrumental',
-    price: 'A$150',
-    summary: 'An original instrumental shaped around your references, voice and direction.',
-    includes: ['Production to your brief', 'One revision round', 'WAV + instrumental export'],
+    name: 'Custom beat',
+    price: 'A$120',
+    summary: 'A new EDM or pop instrumental built around your references and direction.',
+    includes: ['Arrangement and sound design', 'One revision', 'WAV + stems'],
   },
   {
-    name: 'Mix & polish',
+    name: 'Mixing',
     price: 'A$80',
-    summary: 'Bring clarity, movement and release-ready impact to one finished arrangement.',
-    includes: ['Balance, EQ and dynamics', 'Stereo polish', 'One revision round'],
+    summary: 'Send me your stems and I’ll turn them into a cleaner, more balanced mix.',
+    includes: ['Levels, EQ and compression', 'Basic stereo master', 'One revision'],
   },
   {
-    name: 'Full production',
+    name: 'Full song production',
     price: 'A$250',
-    summary: 'Take a voice memo, demo or rough idea through arrangement and final production.',
-    includes: ['Arrangement + sound design', 'Two review rounds', 'Final WAV export'],
+    summary: 'Turn a voice memo, demo or vocal recording into a complete EDM or pop track.',
+    includes: ['Production and arrangement', 'Mixing + basic master', 'Two revisions + WAV and stems'],
   },
 ];

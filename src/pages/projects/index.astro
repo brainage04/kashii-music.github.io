@@ -1,5 +1,4 @@
 ---
-import PageHeader from '../../components/PageHeader.astro';
 import TerminalPanel from '../../components/TerminalPanel.astro';
 import TrackCard from '../../components/TrackCard.astro';
 import { tracks } from '../../data/tracks';
@@ -15,10 +14,7 @@ const playerUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(lat
   image={latestTrack.artwork}
 >
   <div class="site-stack projects-stack">
-    <PageHeader
-      title="Projects"
-      description="I make fast electronic tracks with melodic ideas, heavy drums, and the occasional flip or cover."
-    />
+    <h1 class="sr-only">Music</h1>
 
     <TerminalPanel title="Latest upload" class="featured-player" shear="none">
       <div class="player-layout">
