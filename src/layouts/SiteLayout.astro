@@ -2,6 +2,7 @@
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import { siteConfig } from '../site.config';
+import { withBase } from '../lib/withBase';
 import '../styles/global.css';
 
 export interface Props {
@@ -33,7 +34,7 @@ const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site) : unde
     <meta name="twitter:image" content={image} />
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
-    <link rel="icon" type="image/webp" href={`${import.meta.env.BASE_URL}kashii-avatar.webp`} />
+    <link rel="icon" type="image/webp" href={withBase('/kashii-avatar.webp')} />
     <link rel="preconnect" href="https://i1.sndcdn.com" />
     <link rel="preconnect" href="https://w.soundcloud.com" />
     <title>{pageTitle}</title>
