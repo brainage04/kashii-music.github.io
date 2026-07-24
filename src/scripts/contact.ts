@@ -1,6 +1,8 @@
 const statusOutput = document.querySelector<HTMLElement>('#contact-status');
 const template = document.querySelector<HTMLElement>('#message-template');
 const copyTemplate = document.querySelector<HTMLButtonElement>('#copy-template');
+const serviceLinks = document.querySelectorAll<HTMLAnchorElement>('[data-service]');
+const defaultTemplate = template?.textContent ?? '';
 
 const copyText = async (text: string, label: string) => {
   try {
@@ -11,6 +13,15 @@ const copyText = async (text: string, label: string) => {
   }
 };
 
+
+serviceLinks.forEach((link) => {
+  link.addEventListener('click', () => {
+    const service = link.dataset.service;
+    if (template && service) {
+      template.textContent = defaultTemplate.replace('[e.g. custom beat]', service);
+    }
+  });
+});
 
 copyTemplate?.addEventListener('click', () => {
   const text = template?.textContent?.trim();

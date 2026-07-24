@@ -4,41 +4,103 @@ import { withBase } from '../lib/withBase';
 ---
 
 <SiteLayout title="Not found" description="The requested kashii portfolio page could not be found.">
-  <section class="not-found" box-="square">
-    <h1>This track does not exist.</h1>
+  <section class="not-found" aria-labelledby="not-found-title">
+    <div class="equalizer" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <p class="eyebrow">404 / no signal</p>
+    <h1 id="not-found-title">This track does not exist.</h1>
     <p>The page may have moved, or the link may be out of tune.</p>
     <div class="hero-actions">
-      <a class="action-button" href={withBase('/')} is-="button">Return home</a>
-      <a class="action-button action-button--ghost" href={withBase('/projects/')} is-="button">Browse music</a>
+      <a class="action-button" href={withBase('/')}>Return home</a>
+      <a class="action-button action-button--ghost" href={withBase('/projects/')}>Browse music</a>
     </div>
   </section>
 </SiteLayout>
 
 <style>
   .not-found {
-    min-height: min(38rem, calc(100vh - 14rem));
+    width: min(100%, 44rem);
     display: grid;
-    place-content: center;
     justify-items: start;
-    border-color: var(--panel-border);
+    gap: 1rem;
+    margin-inline: auto;
+    padding: clamp(1.25rem, 6vw, 3rem);
+    border-inline-start: 3px solid var(--accent-soft);
     background:
-      linear-gradient(135deg, color-mix(in srgb, var(--accent) 10%, transparent), transparent 45%),
-      var(--panel-bg);
-    padding: clamp(1.25rem, 6vw, 4rem);
-    box-shadow: var(--panel-shadow);
+      linear-gradient(120deg, color-mix(in srgb, var(--accent) 12%, transparent), transparent 58%),
+      var(--surface-raised);
+    box-shadow: var(--shadow-soft);
   }
 
+  .equalizer {
+    height: 5rem;
+    display: flex;
+    align-items: end;
+    gap: 0.45rem;
+    margin-block-end: 0.5rem;
+  }
+
+  .equalizer span {
+    width: clamp(0.5rem, 2vw, 0.8rem);
+    height: var(--level);
+    background: var(--accent-soft);
+    box-shadow: 0 0 1rem color-mix(in srgb, var(--accent-soft) 32%, transparent);
+    transform-origin: bottom;
+    animation: pulse 1.8s ease-in-out infinite alternate;
+  }
+
+  .equalizer span:nth-child(1) { --level: 32%; animation-delay: -0.2s; }
+  .equalizer span:nth-child(2) { --level: 68%; animation-delay: -0.9s; }
+  .equalizer span:nth-child(3) { --level: 46%; animation-delay: -0.5s; }
+  .equalizer span:nth-child(4) { --level: 100%; animation-delay: -1.3s; }
+  .equalizer span:nth-child(5) { --level: 58%; animation-delay: -0.7s; }
+  .equalizer span:nth-child(6) { --level: 78%; animation-delay: -1.1s; }
+  .equalizer span:nth-child(7) { --level: 38%; animation-delay: -0.35s; }
+
+  .eyebrow {
+    margin: 0;
+    color: var(--accent-soft);
+    font: 700 0.75rem/1.2 var(--font-display);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
 
   h1 {
-    max-width: 15ch;
-    margin-block: 0;
-    font-size: clamp(2rem, 6vw, 4rem);
-    line-height: 0.95;
-    letter-spacing: -0.06em;
+    max-width: 14ch;
+    margin: 0;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    line-height: 0.9;
+    letter-spacing: -0.07em;
   }
 
-  .not-found > p {
-    margin-block: 1rem 1.5rem;
+  .not-found > p:nth-of-type(2) {
+    max-width: 44ch;
+    margin: 0;
     color: var(--foreground1);
+  }
+
+  .hero-actions {
+    padding-block-start: 0.5rem;
+  }
+
+  @keyframes pulse {
+    to { scale: 1 0.55; opacity: 0.62; }
+  }
+
+  @media (max-width: 420px) {
+    .not-found {
+      padding: 1.1rem;
+    }
+
+    .hero-actions > a {
+      flex: 1 1 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .equalizer span {
+      animation: none;
+    }
   }
 </style>

@@ -13,6 +13,10 @@ const isActive = (href: string) => {
 
 <header class="site-header">
   <nav aria-label="Primary navigation">
+    <a class="site-brand" href={withBase('/')}>
+      <span>kashii</span>
+      <small>// producer</small>
+    </a>
     <div class="nav-links">
       {siteConfig.navItems.map((item) => (
         <a href={withBase(item.href)} aria-current={isActive(item.href) ? 'page' : undefined} data-active={isActive(item.href) ? 'true' : undefined}>
@@ -28,16 +32,45 @@ const isActive = (href: string) => {
     position: sticky;
     inset-block-start: 0;
     z-index: 10;
-    border-block-end: 1px solid color-mix(in srgb, var(--foreground2) 28%, transparent);
-    background: var(--background0);
+    border-block-end: 1px solid var(--border-subtle);
+    background: color-mix(in srgb, var(--background0) 92%, transparent);
+    backdrop-filter: blur(12px);
   }
 
   nav {
     width: min(100% - 1.5rem, var(--site-width));
     margin-inline: auto;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
     padding-block: clamp(0.65rem, 1.4vw, 0.85rem);
+  }
+
+  .site-brand {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    color: var(--foreground0);
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .site-brand span {
+    color: var(--accent-soft);
+  }
+
+  .site-brand small {
+    color: var(--foreground2);
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+  }
+
+  .site-brand:hover small {
+    color: var(--foreground1);
   }
 
   .nav-links {
@@ -60,6 +93,16 @@ const isActive = (href: string) => {
   .nav-links a[data-active='true'] {
     color: var(--foreground0);
     border-block-end-color: var(--accent);
+  }
+
+  @media (max-width: 700px) {
+    .site-brand {
+      display: none;
+    }
+
+    nav {
+      justify-content: center;
+    }
   }
 
   @media (max-width: 520px) {

@@ -21,6 +21,7 @@ export const tracks: readonly Track[] = [
     year: '2026',
     genre: 'Dance & EDM',
     format: 'Original',
+    note: 'My latest original electronic release.',
     featured: true,
   },
   {
@@ -31,6 +32,7 @@ export const tracks: readonly Track[] = [
     year: '2025',
     genre: 'Dance & EDM',
     format: 'Original',
+    note: 'An original dance track released in December 2025.',
     featured: true,
   },
   {

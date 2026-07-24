@@ -8,27 +8,34 @@
 @import '@webtui/css/components/separator.css';
 
 :root {
-  --background0: #151515;
-  --background1: #1f1f1f;
-  --background2: #2a2a2a;
-  --background3: #3a3a3a;
-  --foreground0: #f5f5f5;
-  --foreground1: #d7d7d7;
-  --foreground2: #9f9f9f;
+  --background0: #111310;
+  --background1: #181b17;
+  --background2: #23271f;
+  --background3: #343a2f;
+  --foreground0: #f4f5f1;
+  --foreground1: #d8dbd2;
+  --foreground2: #9ba393;
   --accent: #5f8c44;
-  --accent-soft: #78ba48;
-  --accent-hot: #78ba48;
-  --accent-cyan: #78ba48;
-  --accent-green: #78ba48;
-  --accent-yellow: #cde39f;
-  --danger: #82976a;
-  --panel-bg: color-mix(in srgb, var(--background1) 92%, transparent);
-  --panel-border: color-mix(in srgb, var(--foreground2) 68%, transparent);
-  --panel-shadow: 0 1.25rem 3rem color-mix(in srgb, #000 28%, transparent);
+  --accent-soft: #82c952;
+  --accent-hot: #8bd85a;
+  --accent-cyan: #82c952;
+  --accent-green: #82c952;
+  --accent-yellow: #d7e9ab;
+  --danger: #94a97b;
+  --font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;
+  --font-display: 'Courier New', Courier, monospace;
+  --font-family: var(--font-display);
+  --surface: #171a16;
+  --surface-raised: #1d211b;
+  --border-subtle: rgb(218 226 207 / 17%);
+  --border-strong: rgb(218 226 207 / 46%);
+  --shadow-soft: 0 1rem 2.6rem rgb(0 0 0 / 22%);
+  --panel-bg: color-mix(in srgb, var(--surface) 94%, transparent);
+  --panel-border: var(--border-subtle);
+  --panel-shadow: var(--shadow-soft);
   --control-bg: color-mix(in srgb, var(--background0) 80%, transparent);
-  --control-border: color-mix(in srgb, var(--foreground2) 54%, transparent);
+  --control-border: color-mix(in srgb, var(--foreground2) 42%, transparent);
   --control-height: 2.9rem;
-  --font-family: 'Courier New', Courier, monospace;
   --site-width: 70rem;
   --site-footer-width: 72rem;
   color-scheme: dark;
@@ -50,9 +57,12 @@ body {
   grid-template-rows: auto 1fr auto;
   margin: 0;
   line-height: 1.55;
-  background: var(--background0);
+  background:
+    radial-gradient(circle at 14% 8%, rgb(130 201 82 / 7%), transparent 28rem),
+    radial-gradient(circle at 90% 18%, rgb(95 140 68 / 5%), transparent 32rem),
+    var(--background0);
   color: var(--foreground0);
-  font-family: var(--font-family);
+  font-family: var(--font-body);
 }
 
 body::before {
@@ -61,9 +71,9 @@ body::before {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background-image: linear-gradient(color-mix(in srgb, var(--foreground0) 4%, transparent) 1px, transparent 1px);
+  background-image: linear-gradient(rgb(244 245 241 / 3%) 1px, transparent 1px);
   background-size: 100% 1.75rem;
-  opacity: 0.08;
+  opacity: 0.05;
 }
 
 body > * {
@@ -93,6 +103,19 @@ video {
 
 iframe {
   border: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+nav,
+button,
+.eyebrow,
+.section-heading,
+.site-badge,
+.site-footer {
+  font-family: var(--font-display);
 }
 
 a {
@@ -128,6 +151,7 @@ button:disabled {
 p,
 li {
   max-width: 72ch;
+  line-height: 1.62;
 }
 
 ul,
@@ -220,9 +244,10 @@ textarea::placeholder {
 }
 
 .terminal-panel {
-  border-color: var(--panel-border);
+  --box-border-color: var(--border-subtle);
+  border-color: var(--border-subtle);
   background: var(--panel-bg);
-  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--foreground0) 5%, transparent), var(--panel-shadow);
+  box-shadow: var(--shadow-soft);
   padding: clamp(1.1rem, 2.5vw, 1.65rem);
 }
 
@@ -235,7 +260,7 @@ textarea::placeholder {
   gap: 0.75rem 1rem;
   margin-block-end: 1.15rem;
   padding-block-end: 0.7rem;
-  border-block-end: 1px solid color-mix(in srgb, var(--foreground2) 30%, transparent);
+  border-block-end: 1px solid var(--border-subtle);
 }
 
 .panel-header {

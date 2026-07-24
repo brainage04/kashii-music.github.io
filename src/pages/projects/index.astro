@@ -1,11 +1,13 @@
 ---
-import TerminalPanel from '../../components/TerminalPanel.astro';
+import FeaturedPlayer from '../../components/FeaturedPlayer.astro';
 import TrackCard from '../../components/TrackCard.astro';
 import { tracks } from '../../data/tracks';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 
 const latestTrack = tracks[0]!;
-const playerUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(latestTrack.url)}&color=%235f8c44&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false`;
+const originalTracks = tracks.filter((track) => track.format === 'Original');
+const reinterpretations = tracks.filter((track) => track.format !== 'Original');
+const trackIndex = (track: (typeof tracks)[number]) => tracks.indexOf(track);
 ---
 
 <SiteLayout
@@ -13,82 +15,124 @@ const playerUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(lat
   description="Listen to my electronic tracks, flips and covers."
   image={latestTrack.artwork}
 >
-  <div class="site-stack projects-stack">
-    <h1 class="sr-only">Music</h1>
+  <div class="music-stack">
+    <FeaturedPlayer track={latestTrack} />
 
-    <TerminalPanel title="Latest upload" class="featured-player" shear="none">
-      <div class="player-layout">
-        <div>
-          <h2>{latestTrack.title}</h2>
-          <p>kashii · {latestTrack.genre} · {latestTrack.format} · {latestTrack.releaseDate}</p>
-          <a href={latestTrack.url} target="_blank" rel="noreferrer">Open track on SoundCloud <span aria-hidden="true">↗</span></a>
-        </div>
-        <iframe
-          title={`SoundCloud player for ${latestTrack.title}`}
-          width="100%"
-          height="166"
-          allow="autoplay"
-          loading="eager"
-          src={playerUrl}
-        ></iframe>
-      </div>
-    </TerminalPanel>
-
-    <section aria-labelledby="catalogue-title">
-      <div class="section-heading">
-        <h2 id="catalogue-title">All tracks</h2>
-        <p>{tracks.length} public uploads · 2025—2026</p>
-      </div>
-      <div class="track-grid">
-        {tracks.map((track, index) => <TrackCard track={track} index={index} priority={index < 3} />)}
+    <section class="catalogue-intro" aria-labelledby="catalogue-title">
+      <p class="eyebrow">2025—2026</p>
+      <div>
+        <h2 id="catalogue-title">The catalogue</h2>
+        <p>{tracks.length} public uploads spanning original electronic music, a sample flip and a cover.</p>
       </div>
     </section>
 
+    <section id="originals" class="track-section" aria-labelledby="originals-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Original work</p>
+          <h2 id="originals-title">Original tracks</h2>
+        </div>
+        <p>{originalTracks.length} uploads</p>
+      </div>
+      <div class="track-grid">
+        {originalTracks.map((track) => {
+          const index = trackIndex(track);
+          return <TrackCard track={track} index={index} priority={index < 3} />;
+        })}
+      </div>
+    </section>
+
+    <section id="flips-and-covers" class="track-section" aria-labelledby="reinterpretations-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Reinterpretations</p>
+          <h2 id="reinterpretations-title">Flips and covers</h2>
+        </div>
+        <p>{reinterpretations.length} uploads</p>
+      </div>
+      <div class="track-grid track-grid--two">
+        {reinterpretations.map((track) => {
+          const index = trackIndex(track);
+          return <TrackCard track={track} index={index} priority={index < 3} />;
+        })}
+      </div>
+    </section>
   </div>
+
+  <script src="../../scripts/music.ts"></script>
 </SiteLayout>
 
 <style>
-  .projects-stack {
-    gap: clamp(3rem, 7vw, 5.5rem);
-  }
-
-  .player-layout {
+  .music-stack {
     display: grid;
-    grid-template-columns: minmax(13rem, 0.65fr) minmax(18rem, 1.35fr);
-    gap: clamp(1.25rem, 4vw, 3rem);
-    align-items: center;
+    gap: clamp(4rem, 10vw, 7rem);
   }
 
-
-  .player-layout h2 {
-    margin-block: 0.6rem 0;
-    font-size: clamp(1.7rem, 4vw, 2.7rem);
-    line-height: 1;
-    letter-spacing: -0.055em;
+  .catalogue-intro {
+    display: grid;
+    grid-template-columns: minmax(7rem, 0.3fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+    padding-block: 1rem;
   }
 
-  .player-layout p {
-    margin-block: 0.55rem 1.1rem;
-    color: var(--foreground2);
-  }
-
-  .player-layout a {
+  .eyebrow {
+    margin: 0;
     color: var(--accent-soft);
-    font-weight: 700;
+    font: 700 0.75rem/1.2 var(--font-display);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
-  .player-layout iframe {
-    background: var(--background0);
+  .catalogue-intro > div {
+    display: grid;
+    gap: 0.8rem;
   }
 
+  .catalogue-intro h2,
+  .section-heading h2 {
+    margin: 0;
+    font-size: clamp(1.9rem, 5vw, 3rem);
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
 
-  @media (max-width: 760px) {
-    .player-layout {
+  .catalogue-intro > div > p {
+    max-width: 58ch;
+    margin: 0;
+    color: var(--foreground1);
+    font-size: 1.05rem;
+  }
+
+  .track-section {
+    scroll-margin-block-start: 5rem;
+  }
+
+  .section-heading > div {
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .track-grid--two {
+    width: min(100%, calc((100% - 1.35rem) * 0.667));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-inline: auto;
+  }
+
+  @media (max-width: 900px) {
+    .track-grid--two {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .catalogue-intro {
       grid-template-columns: 1fr;
+      gap: 0.65rem;
     }
 
-    .projects-stack {
-      gap: 2.5rem;
+    .track-grid--two {
+      grid-template-columns: 1fr;
     }
   }
 </style>
