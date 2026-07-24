@@ -38,19 +38,13 @@ const faqs = [
 >
   <div class="commissions-page">
     <header class="commissions-hero">
-      <p class="eyebrow">Commission music production</p>
-      <h1>Production that starts with a clear scope.</h1>
-      <p>Choose the closest service, send a short brief and receive a written quote before production starts. Starting prices are in AUD.</p>
-      <a class="action-button" href="#services">View services <span aria-hidden="true">↓</span></a>
+      <h1>Commissions</h1>
+      <p>Pick what’s closest to what you need, then send me the details and I’ll confirm the final price before I start. Starting prices are in AUD.</p>
     </header>
 
     <section id="services" class="services-section" aria-labelledby="pricing-title">
       <div class="section-heading">
-        <div>
-          <p class="eyebrow">Pricing</p>
-          <h2 id="pricing-title">Choose a service</h2>
-        </div>
-        <p>Final scope confirmed before work starts</p>
+        <h2 id="pricing-title">Choose a service</h2>
       </div>
 
       <div class="pricing-grid">
@@ -64,8 +58,7 @@ const faqs = [
             <ul>
               {service.includes.map((item) => <li>{item}</li>)}
             </ul>
-            <a class="sample-link" href={service.sample.url} target="_blank" rel="noreferrer">{service.sample.label} <span aria-hidden="true">↗</span></a>
-            <a class="action-button service-action" href="#contact" data-service={service.name}>{service.action} <span aria-hidden="true">→</span></a>
+            <a class="action-button service-action" href="#contact" data-service={service.name}>Ask about this service <span aria-hidden="true">→</span></a>
           </article>
         ))}
       </div>
@@ -73,13 +66,10 @@ const faqs = [
 
     <section class="workflow-section" aria-labelledby="workflow-title">
       <div class="section-heading">
-        <div>
-          <p class="eyebrow">Process</p>
-          <h2 id="workflow-title">How commissions work</h2>
-        </div>
+        <h2 id="workflow-title">How commissions work</h2>
       </div>
       <ol class="flow-list">
-        <li><strong>01</strong><div><h3>Send</h3><p>Send a short project brief using the contact details below.</p></div></li>
+        <li><strong>01</strong><div><h3>Send</h3><p>Use the contact details below to send me a short project brief.</p></div></li>
         <li><strong>02</strong><div><h3>Quote</h3><p>Scope, price, revisions, rights and timing are confirmed in writing.</p></div></li>
         <li><strong>03</strong><div><h3>Create</h3><p>A first pass is produced and shared at the agreed review point.</p></div></li>
         <li><strong>04</strong><div><h3>Finish</h3><p>Feedback is applied and the approved files are delivered.</p></div></li>
@@ -88,9 +78,8 @@ const faqs = [
 
     <section id="contact" class="contact-section" aria-labelledby="contact-title">
       <div class="contact-primary">
-        <p class="eyebrow">Start a project</p>
         <h2 id="contact-title">Contact</h2>
-        <p>Discord is the fastest way to reach me. Include the service, two or three references, your budget and your deadline.</p>
+        <p>Discord is the best way to reach me. You can also use my SoundCloud profile.</p>
         <a class="action-button contact-action" href={discordProfileUrl} target="_blank" rel="noreferrer">Message on Discord <span aria-hidden="true">↗</span></a>
         <dl>
           <div><dt>Discord</dt><dd>helpimdead111</dd></div>
@@ -140,10 +129,7 @@ Anything else I should know: I have the vocals recorded and would also like an i
 
     <section class="faq-section" aria-labelledby="faq-title">
       <div class="section-heading">
-        <div>
-          <p class="eyebrow">Before booking</p>
-          <h2 id="faq-title">Questions and answers</h2>
-        </div>
+        <h2 id="faq-title">Q&A</h2>
       </div>
       <div class="faq-list">
         {faqs.map((faq) => (
@@ -172,13 +158,6 @@ Anything else I should know: I have the vocals recorded and would also like an i
     padding-block: clamp(1rem, 5vw, 3rem);
   }
 
-  .eyebrow {
-    margin: 0;
-    color: var(--accent-soft);
-    font: 700 0.75rem/1.2 var(--font-display);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
 
   .commissions-hero h1 {
     max-width: 14ch;
@@ -188,21 +167,14 @@ Anything else I should know: I have the vocals recorded and would also like an i
     letter-spacing: -0.075em;
   }
 
-  .commissions-hero > p:nth-child(3) {
+  .commissions-hero > p {
     max-width: 62ch;
     margin: 0;
     color: var(--foreground1);
     font-size: clamp(1rem, 2vw, 1.15rem);
   }
 
-  .commissions-hero > a {
-    margin-block-start: 0.5rem;
-  }
 
-  .section-heading > div {
-    display: grid;
-    gap: 0.45rem;
-  }
 
   .section-heading h2 {
     margin: 0;
@@ -288,12 +260,6 @@ Anything else I should know: I have the vocals recorded and would also like an i
     font-family: var(--font-display);
   }
 
-  .sample-link {
-    margin-block: auto 0.9rem;
-    padding-block-start: 0.75rem;
-    color: var(--foreground1);
-    font: 700 0.78rem/1.2 var(--font-display);
-  }
 
   .service-action {
     width: 100%;

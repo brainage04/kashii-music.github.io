@@ -43,7 +43,7 @@ export const tracks: readonly Track[] = [
     year: '2025',
     genre: 'Dance & EDM',
     format: 'Sample flip',
-    note: 'Built around a sample from “Decode” by Paramore.',
+    note: 'Uses a sample from “Decode” by Paramore.',
     featured: true,
   },
   {
@@ -63,7 +63,7 @@ export const tracks: readonly Track[] = [
     releaseDate: '08 Oct 2025',
     year: '2025',
     genre: 'Pop',
-    format: 'Cover',
-    note: 'Cover credited to fin.',
+    format: 'Original',
+    note: 'Original track. Cover art credited to fin.',
   },
 ];

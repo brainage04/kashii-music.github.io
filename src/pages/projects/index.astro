@@ -8,23 +8,17 @@ const latestTrack = tracks[0]!;
 const originalTracks = tracks.filter((track) => track.format === 'Original');
 const reinterpretations = tracks.filter((track) => track.format !== 'Original');
 const trackIndex = (track: (typeof tracks)[number]) => tracks.indexOf(track);
+const uploadCount = (count: number) => `${count} ${count === 1 ? 'upload' : 'uploads'}`;
 ---
 
 <SiteLayout
   title="Music"
-  description="Listen to my electronic tracks, flips and covers."
+  description="Listen to my electronic tracks and sample flips."
   image={latestTrack.artwork}
 >
   <div class="music-stack">
     <FeaturedPlayer track={latestTrack} />
 
-    <section class="catalogue-intro" aria-labelledby="catalogue-title">
-      <p class="eyebrow">2025—2026</p>
-      <div>
-        <h2 id="catalogue-title">The catalogue</h2>
-        <p>{tracks.length} public uploads spanning original electronic music, a sample flip and a cover.</p>
-      </div>
-    </section>
 
     <section id="originals" class="track-section" aria-labelledby="originals-title">
       <div class="section-heading">
@@ -32,7 +26,7 @@ const trackIndex = (track: (typeof tracks)[number]) => tracks.indexOf(track);
           <p class="eyebrow">Original work</p>
           <h2 id="originals-title">Original tracks</h2>
         </div>
-        <p>{originalTracks.length} uploads</p>
+        <p>{uploadCount(originalTracks.length)}</p>
       </div>
       <div class="track-grid">
         {originalTracks.map((track) => {
@@ -42,13 +36,13 @@ const trackIndex = (track: (typeof tracks)[number]) => tracks.indexOf(track);
       </div>
     </section>
 
-    <section id="flips-and-covers" class="track-section" aria-labelledby="reinterpretations-title">
+    <section id="sample-flips" class="track-section" aria-labelledby="reinterpretations-title">
       <div class="section-heading">
         <div>
           <p class="eyebrow">Reinterpretations</p>
-          <h2 id="reinterpretations-title">Flips and covers</h2>
+          <h2 id="reinterpretations-title">Sample flip</h2>
         </div>
-        <p>{reinterpretations.length} uploads</p>
+        <p>{uploadCount(reinterpretations.length)}</p>
       </div>
       <div class="track-grid track-grid--two">
         {reinterpretations.map((track) => {
@@ -65,43 +59,7 @@ const trackIndex = (track: (typeof tracks)[number]) => tracks.indexOf(track);
 <style>
   .music-stack {
     display: grid;
-    gap: clamp(4rem, 10vw, 7rem);
-  }
-
-  .catalogue-intro {
-    display: grid;
-    grid-template-columns: minmax(7rem, 0.3fr) minmax(0, 1fr);
-    gap: 1.5rem;
-    align-items: start;
-    padding-block: 1rem;
-  }
-
-  .eyebrow {
-    margin: 0;
-    color: var(--accent-soft);
-    font: 700 0.75rem/1.2 var(--font-display);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .catalogue-intro > div {
-    display: grid;
-    gap: 0.8rem;
-  }
-
-  .catalogue-intro h2,
-  .section-heading h2 {
-    margin: 0;
-    font-size: clamp(1.9rem, 5vw, 3rem);
-    line-height: 1;
-    letter-spacing: -0.045em;
-  }
-
-  .catalogue-intro > div > p {
-    max-width: 58ch;
-    margin: 0;
-    color: var(--foreground1);
-    font-size: 1.05rem;
+    gap: clamp(3rem, 8vw, 6rem);
   }
 
   .track-section {
@@ -125,12 +83,8 @@ const trackIndex = (track: (typeof tracks)[number]) => tracks.indexOf(track);
     }
   }
 
-  @media (max-width: 640px) {
-    .catalogue-intro {
-      grid-template-columns: 1fr;
-      gap: 0.65rem;
-    }
 
+  @media (max-width: 640px) {
     .track-grid--two {
       grid-template-columns: 1fr;
     }
